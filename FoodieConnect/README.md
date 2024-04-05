@@ -1,4 +1,4 @@
-# bt3103-l1-grp16-finalproject
+# FoodieConnect
 
 This template should help get you started developing with Vue 3 in Vite.
 
