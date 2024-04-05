@@ -41,7 +41,7 @@
             </div>
           </div>
         </div>
-        <button type="submit" class="submit-button">Submit</button>
+        <button type="submit" class="submit-button" @click='clearSelectedHashtags'>Submit</button>
       </form>
     </div>
     <div v-if="showWarning" class="modal">
@@ -135,6 +135,9 @@ export default {
       } else {
         this.selectedHashtags.push(tag);
       }
+    },
+    clearSelectedHashtags() {
+      this.selectedHashtags = []; // Clear the selected hashtags array
     },
     confirmHashtags() {
       this.hideHashtagPopup();

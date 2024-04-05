@@ -1,9 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Login from "@/components/Login.vue";
-import Home from "@/views/Homepage.vue";
 import About from "@/views/About.vue";
+import Home from "@/views/Homepage.vue";
 import ProfileView from "@/views/ProfileView.vue";
-// import Profile from '@/views/Profile.vue';
 
 const routes = [
   {
@@ -14,7 +13,7 @@ const routes = [
   {
     path: "/home",
     name: "Home", // Assuming you want to navigate to Home component via '/home' path
-    component: Home,
+    component: Homepage,
   },
   {
     path: "/about",
@@ -24,13 +23,8 @@ const routes = [
   {
     path: "/profile",
     name: "Profile",
-    component: ProfileView,
+    component: Profile,
   },
-  // {
-  //   path: '/profile',
-  //   name: 'Profile',
-  //   component: Profile
-  // }
 ];
 const router = createRouter({
   history: createWebHistory(),
