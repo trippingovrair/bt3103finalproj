@@ -3,7 +3,7 @@ import Login from '@/components/Login.vue';
 import Home from "@/views/Homepage.vue";
 import About from "@/views/About.vue";
 import Homepage from "@/views/Homepage.vue";
-// import Profile from '@/views/Profile.vue';
+import ProfileView from "@/views/ProfileView.vue";
 
 const routes = [
   {
@@ -21,11 +21,11 @@ const routes = [
     name: 'About',
     component: About
   },
-  // {
-  //   path: '/profile',
-  //   name: 'Profile',
-  //   component: Profile
-  // }
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile
+  }
 ];
 const router = createRouter({
   history: createWebHistory(),
