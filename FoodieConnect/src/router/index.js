@@ -1,33 +1,44 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Login from '@/components/Login.vue';
-import Home from "@/views/Homepage.vue";
 import About from "@/views/About.vue";
-// import Profile from '@/views/Profile.vue';
+import Homepage from "@/views/Homepage.vue";
+import ProfileView from "@/views/ProfileView.vue";
+import UpdateProfile from "@/views/UpdateProfile.vue";
 
 const routes = [
   {
-    path: '/', // The root path should only be declared once.
-    name: 'Login',
-    component: Login
+    path: "/", // The root path should only be declared once.
+    name: "Login",
+    component: Login,
   },
   {
-    path: '/home',
-    name: 'Home', // Assuming you want to navigate to Home component via '/home' path
-    component: Home
+    path: "/logout",
+    name: "Logout",
+    component: Logout,
   },
   {
-    path: '/about',
-    name: 'About',
-    component: About
+    path: "/home",
+    name: "Home", // Assuming you want to navigate to Home component via '/home' path
+    component: Homepage,
   },
-  // {
-  //   path: '/profile',
-  //   name: 'Profile',
-  //   component: Profile
-  // }
-]
+  {
+    path: "/about",
+    name: "About",
+    component: About,
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: ProfileView,
+  },
+  {
+    path: "/update-profile", // Add this route for UpdateProfile
+    name: "UpdateProfile",
+    component: UpdateProfile,
+  },
+];
 const router = createRouter({
   history: createWebHistory(),
-  routes
-})
-export default router
+  routes,
+});
+export default router;

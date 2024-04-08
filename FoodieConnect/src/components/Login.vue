@@ -1,85 +1,100 @@
 <template>
-  <div style="text-align:center;">
-      <h1 id="mainHead">EDIT TEXT</h1>
-      <div id="firebaseui-auth-container">
-          <div id="pagecontent">
-              EDIT THIS TEXT. <br>
-              EDIT THIS TOO.
-          </div>
-          <h5>copyright@BT3103-L1-GRP16-FoodieConnect</h5>
-      </div>
+  <div class="login-container">
+    <img src="@/assets/icon.jpg" alt="FoodieConnect Icon" class="icon" />
+    <h1 id="mainHead">Welcome to FoodieConnect</h1>
+    <div id="firebaseui-auth-container"></div>
+    <div id="pagecontent">
+      Sign in to start sharing and exploring food experiences.
+    </div>
+    <h5>copyright &copy; BT3103-L1-GRP16-FoodieConnect</h5>
   </div>
 </template>
+
 <script>
 import firebase from '@/firebase.js';
 import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
-import { getAuth, onAuthStateChanged } from 'firebase/auth'; // Import onAuthStateChanged
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 export default {
   name: "Login",
   mounted() {
-      const auth = getAuth();
-      onAuthStateChanged(auth, (user) => {
-          if (user) {
-              this.useremail = user.email; // Access email property from user object
-              this.user = user;
-              console.log('Logged in');
-              this.$router.push('/home');
-          } else {
-              console.log('Not logged in');
-          }
-      });
-
-      // Calling the ui instance
-      var ui = firebaseui.auth.AuthUI.getInstance();
-      if (!ui) {
-          ui = new firebaseui.auth.AuthUI(firebase.auth());
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.$router.push('/homepage');
+      } else {
+        this.startFirebaseUI();
       }
-
-      var uiConfig = {
-          signInSuccessUrl: '/home',
-          signInOptions: [
-              firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-              firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          ]
+    });
+  },
+  methods: {
+    startFirebaseUI() {
+      let ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(firebase.auth());
+      const uiConfig = {
+        signInSuccessUrl: '/home',
+        signInOptions: [
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        ],
       };
-
       ui.start("#firebaseui-auth-container", uiConfig);
+    }
   }
-
 }
 </script>
 
 <style scoped>
-#firebaseui-auth-container {
-  margin-top: 50px;
-  margin-bottom: 50px;
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 5%; /* Responsive padding */
 }
 
-#pagecontent {
-  height: 100px;
-  font-size: larger;
-  font-weight: bolder;
-  text-align: center;
+.icon {
+  width: 10%; /* Relative size to the viewport */
+  max-width: 120px; /* Maximum size */
+  min-width: 50px; /* Minimum size */
 }
 
 #mainHead {
-  text-align: center;
-  /* font-size: 50px; */
-  /* height: 100px; */
+  margin-bottom: 1rem;
   text-shadow: 2px 2px grey;
 }
 
-#bg {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 60%;
+#firebaseui-auth-container {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#pagecontent {
+  margin-bottom: 1rem;
+  font-size: 1em; /* Relative font size */
+  font-weight: bolder;
 }
 
 h5 {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   text-align: center;
   background-color: rgb(194, 202, 188);
+  padding: 0.5rem;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .icon {
+    width: 15%; /* Larger percentage for smaller screens */
+  }
+  #mainHead {
+    font-size: 1.5em; /* Larger font size for smaller screens */
+  }
+  h5 {
+    font-size: 0.8em; /* Smaller font size for smaller screens */
+  }
 }
 </style>
