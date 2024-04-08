@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Login from "@/components/Login.vue";
-import Logout from "../components/Logout.vue";
-import Home from "@/views/Homepage.vue";
 import About from "@/views/About.vue";
 import Homepage from "@/views/Homepage.vue";
 import ProfileView from "@/views/ProfileView.vue";
@@ -14,13 +12,18 @@ const routes = [
     component: Login,
   },
   {
-    path: "/logout",
-    name: "Logout",
-    component: Logout,
-  },
-  {
     path: "/home",
     name: "Home", // Assuming you want to navigate to Home component via '/home' path
+    component: Homepage,
+  },
+  {
+    path: "/about",
+    name: "About",
+    component: About,
+  },
+  {
+    path: "/homepage",
+    name: "Homepage", // Assuming you want to navigate to Home component via '/home' path
     component: Homepage,
   },
   {
