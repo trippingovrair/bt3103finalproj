@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Login from '@/components/Login.vue';
-import Home from "@/views/Homepage.vue";
+import Login from "@/components/Login.vue";
 import About from "@/views/About.vue";
 import Homepage from "@/views/Homepage.vue";
 import ProfileView from "@/views/ProfileView.vue";
@@ -12,20 +11,20 @@ const routes = [
     component: Login,
   },
   {
-    path: '/home',
-    name: 'Home', // Assuming you want to navigate to Home component via '/home' path
-    component: Homepage
+    path: "/homepage",
+    name: "Homepage", // Assuming you want to navigate to Home component via '/home' path
+    component: Homepage,
   },
   {
-    path: '/about',
-    name: 'About',
-    component: About
+    path: "/about",
+    name: "About",
+    component: About,
   },
   {
-    path: '/profile',
-    name: 'Profile',
-    component: Profile
-  }
+    path: "/profile",
+    name: "Profile",
+    component: ProfileView,
+  },
 ];
 const router = createRouter({
   history: createWebHistory(),
